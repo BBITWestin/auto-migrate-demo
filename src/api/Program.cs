@@ -24,8 +24,7 @@ await using (var scope = app.Services.CreateAsyncScope())
     var db = scope.ServiceProvider.GetRequiredService<TodoDb>();
     // await db.Database.EnsureCreatedAsync();
 
-    // Testing
-    // await db.Database.MigrateAsync(); // This applies any pending migrations
+    await db.Database.MigrateAsync(); // This applies any pending migrations
 }
 
 app.UseCors(policy =>
