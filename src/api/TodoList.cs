@@ -16,4 +16,5 @@ public class TodoList
     public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
     public DateTimeOffset? UpdatedDate { get; set; }
     public string? WildCard { get; set; }
+    public string? WildCard2 { get; set; }
 }
