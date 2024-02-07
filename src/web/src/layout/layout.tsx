@@ -14,6 +14,7 @@ import { TodoItem, TodoList } from '../models';
 import { headerStackStyles, mainStackStyles, rootStackStyles, sidebarStackStyles } from '../ux/styles';
 import TodoItemDetailPane from '../components/todoItemDetailPane';
 import { bindActionCreators } from '../actions/actionCreators';
+import ETagDemoCaller from '../services/ETagDemoCaller';
 
 const Layout: FC = (): ReactElement => {
     const navigate = useNavigate();
@@ -75,6 +76,15 @@ const Layout: FC = (): ReactElement => {
                         onCancel={onItemEditCancel} />
                 </Stack.Item>
             </Stack>
+            <div style={{
+                backgroundColor:'red',
+                padding:'25px'
+            }}
+                onClick={async () => { 
+                    console.log('DEMO: 1. Making Call');
+                    await ETagDemoCaller.get('/lists').then((response) => { response.data.map((list:any,index:number) => {console.log(index, list.name, list.id)})}).catch((e) => {console.log('error') })
+                    console.log('DEMO: 2. Done');
+                }}>ETagDemoCaller</div>
         </Stack>
     );
 }

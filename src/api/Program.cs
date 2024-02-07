@@ -1,6 +1,7 @@
 using Azure.Identity;
 using Microsoft.EntityFrameworkCore;
 using SimpleTodo.Api;
+using SimpleTodo.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 var credential = new DefaultAzureCredential();
@@ -33,6 +34,9 @@ app.UseCors(policy =>
     policy.AllowAnyHeader();
     policy.AllowAnyMethod();
 });
+
+// Insert the VersionCheckMiddleware here, after CORS but before routing and endpoints are configured
+app.UseMiddleware<VersionCheckMiddleware>();
 
 // Swagger UI
 app.UseSwaggerUI(options =>
