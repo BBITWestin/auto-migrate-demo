@@ -13,9 +13,9 @@ namespace SimpleTodo.Api.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            if (context.Request.Headers.ContainsKey("If-None-Match"))
+            if (context.Request.Headers.ContainsKey("If-Match"))
             {
-                var incomingETag = context.Request.Headers["If-None-Match"].ToString();
+                var incomingETag = context.Request.Headers["If-Match"].ToString();
                 // Check if the incoming ETag (version) matches the current version
                 if (!CurrentVersionETag.Equals(incomingETag))
                 {

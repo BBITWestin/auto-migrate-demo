@@ -2,14 +2,14 @@ import axios from "axios";
 import config from "../config"
 
 const baseURL = config.api.baseUrl;
-const frontendVersionETag = '1.0.0'; // The current frontend version ETag
+const frontendVersionETag = '1.0.1'; // The current frontend version ETag
 
 // Create an Axios instance with default headers, including the ETag
 const ETagDemoCaller = axios.create({
   baseURL,
   headers: {
     "Content-Type": "application/json",
-    "If-None-Match": frontendVersionETag, // Include the ETag header here
+    "If-Match": frontendVersionETag, // Include the ETag header here
   },
 });
 
